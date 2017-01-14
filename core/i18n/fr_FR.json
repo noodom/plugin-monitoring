@@ -1,0 +1,67 @@
+{
+    "plugins\/monitoring\/plugin_info\/info.xml": {
+        "Plugin de Monitoring": "Plugin de Monitoring",
+        "Aucune": "Aucune"
+    },
+    "plugins\/monitoring\/desktop\/php\/monitoring.php": {
+        "Ajouter un Monitoring": "Ajouter un Monitoring",
+        "Rechercher": "Rechercher",
+        "Gestion": "Gestion",
+        "Configuration": "Configuration",
+        "Mes équipements": "Mes équipements",
+        "Général": "Général",
+        "Nom de l'équipement": "Nom de l'équipement",
+        "Objet parent": "Objet parent",
+        "Aucun": "Aucun",
+        "Catégorie": "Catégorie",
+        "Activer": "Activer",
+        "Visible": "Visible",
+        "Supprimer": "Supprimer",
+        "Sauvegarder": "Sauvegarder",
+        "Nom": "Nom",
+        "Colorisation des valeurs": "Colorisation des valeurs",
+        "Afficher\/Historiser": "Afficher\/Historiser",
+        "Action": "Action",
+        "Options": "Options",
+        "Mode": "Mode",
+        "Local": "Local",
+        "SSH": "SSH",
+        "Commandes": "Commandes",
+        "Nom d'utilisateur": "Nom d'utilisateur",
+        "Mot de passe": "Mot de passe",
+        "IP": "IP",
+        "Paramètres": "Paramètres",
+        "Commande": "Commande",
+        "Equipement": "Equipement",
+        "Configuration avancée": "Configuration avancée",
+        "Ajouter une commande": "Ajouter une commande"
+    },
+    "plugins\/monitoring\/core\/class\/monitoring.class.php": {
+        "Démarré depuis": "Démarré depuis",
+        "Charge système 15min": "Charge système 15min",
+        "Mémoire libre": "Mémoire libre",
+        "Swap": "Swap",
+        "Espace disque libre": "Espace disque libre",
+        "Rafraîchir": "Rafraîchir",
+        "Charge système": "Charge système",
+        "Uptime": "Uptime",
+        "Load": "Load",
+        "Free mem": "Free mem",
+        "Free swap": "Free swap",
+        "Free disk": "Free disk",
+        "Mémoire": "Mémoire",
+        "Disque": "Disque",
+        "Température cpu": "Température cpu",
+        "Fréquence cpu": "Fréquence cpu",
+        "Echec de l'authentification SSH": "Echec de l'authentification SSH"
+    },
+    "plugins\/monitoring\/desktop\/js\/monitoring.js": {
+        "Afficher": "Afficher",
+        "Historiser": "Historiser",
+        "Tester": "Tester",
+        "Commande à executer": "Commande à executer"
+    },
+    "plugins\/monitoring\/plugin_info\/info.json": {
+        "Plugin de Monitoring local et distant par SSH": "Plugin de Monitoring local et distant par SSH"
+    }
+}

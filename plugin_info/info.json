@@ -1,0 +1,11 @@
+{
+	"id" : "monitoring",
+	"name" : "Monitoring",
+	"description" : "Plugin de Monitoring local et distant par SSH",
+	"licence" : "AGPL",
+	"author" : "Loïc",
+	"require" : "2.4",
+	"category" : "monitoring",
+	"hasDependency" : true,
+	"issue" : "https://github.com/jeedom/issues/issues"
+}
