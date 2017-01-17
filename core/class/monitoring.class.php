@@ -376,7 +376,9 @@ class monitoring extends eqLogic {
 		} catch (Exception $e) {
 			return round($this->snmp_getValue('.1.3.6.1.2.1.25.2.3.1.6.6') / $this->snmp_getValue('.1.3.6.1.2.1.25.2.3.1.5.6') * 100, 2);
 		}
-		return round((($total - $this->snmp_getValue('.1.3.6.1.4.1.2021.4.11.0') + $this->snmp_getValue('.1.3.6.1.4.1.2021.4.13.0')) / $total) * 100, 2);
+		$res1 = round(($this->snmp_getValue('.1.3.6.1.4.1.2021.4.6.0') / $total) * 100, 2);
+		$res2 = round((($total - $this->snmp_getValue('.1.3.6.1.4.1.2021.4.11.0')) / $total) * 100, 2);
+		return ($res1 > $res2) ? $res2 : $res1;
 	}
 
 	public function snmp_sysuptime() {
@@ -426,7 +428,7 @@ class monitoring extends eqLogic {
 		$return = ($value - $previous) / ($now - $this->getCache('networkOut::lastRawDate', 0));
 		$this->setCache('networkOut::lastRawDate', $now);
 		$this->setCache('networkOut::lastRawValue', $value);
-		if ($previous == 0) {
+		if ($previous < 0) {
 			return 0;
 		}
 		return round($return / 1024 / 1024, 1);
@@ -439,7 +441,7 @@ class monitoring extends eqLogic {
 		$return = ($value - $previous) / ($now - $this->getCache('networkIn::lastRawDate', 0));
 		$this->setCache('networkIn::lastRawDate', $now);
 		$this->setCache('networkIn::lastRawValue', $value);
-		if ($previous == 0) {
+		if ($previous < 0) {
 			return 0;
 		}
 		return round($return / 1024 / 1024, 1);
