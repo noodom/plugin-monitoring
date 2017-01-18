@@ -196,7 +196,7 @@ class monitoring_snmp {
 		$return = ($value - $previous) / ($now - $this->getEqLogic()->getCache('networkOut::lastRawDate', 0));
 		$this->getEqLogic()->setCache('networkOut::lastRawDate', $now);
 		$this->getEqLogic()->setCache('networkOut::lastRawValue', $value);
-		if ($previous < 0) {
+		if ($return < 0) {
 			return 0;
 		}
 		return round($return / 1024 / 1024, 1);
@@ -209,7 +209,7 @@ class monitoring_snmp {
 		$return = ($value - $previous) / ($now - $this->getEqLogic()->getCache('networkIn::lastRawDate', 0));
 		$this->getEqLogic()->setCache('networkIn::lastRawDate', $now);
 		$this->getEqLogic()->setCache('networkIn::lastRawValue', $value);
-		if ($previous < 0) {
+		if ($return < 0) {
 			return 0;
 		}
 		return round($return / 1024 / 1024, 1);
