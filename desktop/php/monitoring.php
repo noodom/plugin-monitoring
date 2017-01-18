@@ -4,6 +4,7 @@ if (!isConnect('admin')) {
 }
 $plugin = plugin::byId('monitoring');
 sendVarToJS('eqType', $plugin->getId());
+sendVarToJS('monitoring_motors', monitoring::$_motors);
 $eqLogics = eqLogic::byType($plugin->getId());
 ?>
 
@@ -112,10 +113,13 @@ foreach (jeedom::getConfiguration('eqLogic:category') as $key => $value) {
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">{{Moteur}}</label>
-							<div class="col-sm-2">
-								<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr motor_enable" data-l1key="configuration" data-l2key="snmp"/>{{SNMP}}</label>
-								<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr motor_enable" data-l1key="configuration" data-l2key="cli" />{{Bash/Shell}}</label>
-								<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr motor_enable" data-l1key="configuration" data-l2key="ping" />{{Ping}}</label>
+							<div class="col-sm-10">
+							<?php
+foreach (monitoring::$_motors as $motor => $value) {
+	echo '<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr motor_enable" data-l1key="configuration" data-l2key="' . $motor . '"/>' . $value['name'] . '</label>';
+}
+
+?>
 							</div>
 						</div>
 						<div class="motor_config cli" style="display:none;">

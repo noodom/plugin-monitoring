@@ -15,6 +15,9 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+
+ $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
+
  $('.eqLogicAttr.motor_enable').on('change click',function(){
  	$('.eqLogicAttr.motor_enable').each(function(){
  		var type=$(this).attr('data-l2key');
@@ -40,9 +43,6 @@
  	if (!isset(_cmd)) {
  		var _cmd = {configuration: {}};
  	}
- 	if(!isset(_cmd.logicalId)){
- 		_cmd.logicalId = 'usercmd';
- 	}
  	var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
  	tr += '<td>';
  	tr += '<span class="cmdAttr" data-l1key="id" style="display:none;"></span>';
@@ -53,10 +53,11 @@
  	tr += '</div>';
  	tr += '</td>'; 
  	tr += '<td>';
- 	if(_cmd.logicalId == 'usercmd'){
+ 	if(_cmd.logicalId != 'refresh'){
  		tr += '<select class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="motor">';
- 		tr += '<option value="cli">{{Bash/Shell}}</option>';
- 		tr += '<option value="snmp">{{SNMP}}</option>';
+ 		for(var i in monitoring_motors){
+ 			tr += '<option value="'+i+'">'+monitoring_motors[i].name+'</option>';
+ 		}
  		tr += '</select>';
  		tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="usercmd" placeholder="{{Commande}}" style="margin-top:5px;" />';
  	}
@@ -65,11 +66,11 @@
  	tr += '<span class="type" type="' + init(_cmd.type) + '">' + jeedom.cmd.availableType() + '</span>';
  	tr += '<span class="subType" subType="' + init(_cmd.subType) + '"></span>';
  	tr += '</td>';
- 	 tr += '<td>';
-    tr += '<input class="cmdAttr form-control input-sm" data-l1key="unite" placeholder="Unité" title="{{Unité}}">';
-    tr += '<input class="cmdAttr form-control input-sm expertModeVisible" data-l1key="configuration" data-l2key="minValue" placeholder="{{Min}}" title="{{Min}}" style="margin-top : 5px;"> ';
-    tr += '<input class="cmdAttr form-control input-sm expertModeVisible" data-l1key="configuration" data-l2key="maxValue" placeholder="{{Max}}" title="{{Max}}" style="margin-top : 5px;">';
-    tr += '</td>';
+ 	tr += '<td>';
+ 	tr += '<input class="cmdAttr form-control input-sm" data-l1key="unite" placeholder="Unité" title="{{Unité}}">';
+ 	tr += '<input class="cmdAttr form-control input-sm expertModeVisible" data-l1key="configuration" data-l2key="minValue" placeholder="{{Min}}" title="{{Min}}" style="margin-top : 5px;"> ';
+ 	tr += '<input class="cmdAttr form-control input-sm expertModeVisible" data-l1key="configuration" data-l2key="maxValue" placeholder="{{Max}}" title="{{Max}}" style="margin-top : 5px;">';
+ 	tr += '</td>';
  	tr += '<td style="width: 150px;">';
  	tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isVisible" checked/>{{Afficher}}</label></span> ';
  	tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
@@ -89,6 +90,3 @@
  }
 
 
-
-
- $("#table_cmd").sortable({axis: "y", cursor: "move", items: ".cmd", placeholder: "ui-state-highlight", tolerance: "intersect", forcePlaceholderSize: true});
