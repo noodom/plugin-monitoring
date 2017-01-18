@@ -1,6 +1,6 @@
-= OIDs général
+==== OIDs général
 
-== Load
+===== Load
 
 [cols="2*", options="header"] 
 |===
@@ -10,7 +10,7 @@
 |.1.3.6.1.4.1.2021.10.1.3.3|15 minute Load
 |===
 
-== CPU
+===== CPU
 
 [cols="2*", options="header"] 
 |===
@@ -24,7 +24,7 @@
 |.1.3.6.1.4.1.2021.11.51.0|Raw nice cpu time
 |===
 
-== Memory Statistics
+===== Memory Statistics
 
 [cols="2*", options="header"] 
 |===
@@ -39,7 +39,7 @@
 |.1.3.6.1.4.1.2021.4.15.0|Total Cached Memory
 |===
 
-== Disk
+===== Disk
 
 [cols="2*", options="header"] 
 |===
@@ -53,7 +53,7 @@
 |.1.3.6.1.4.1.2021.9.1.10.X|Percentage of inodes used on disk
 |===
 
-== System
+===== System
 
 [cols="2*", options="header"] 
 |===
@@ -61,7 +61,7 @@
 |.1.3.6.1.2.1.1.3.0|System Uptime
 |===
 
-= OIDs VMware
+==== OIDs VMware
 
 [cols="2*", options="header"] 
 |===
@@ -70,7 +70,7 @@
 |.1.3.6.1.4.1.6876.1.2.0|Version de VMware
 |===
 
-= OIDs Synology
+==== OIDs Synology
 
 [cols="2*", options="header"] 
 |===
@@ -97,7 +97,7 @@
 |.1.3.6.1.4.1.6574.6.1.1.3.9|Nombre d'utilisateur connecté en OTHER
 |===
 
-= OIDs Synology UPS
+==== OIDs Synology UPS
 
 [cols="2*", options="header"] 
 |===
@@ -109,7 +109,7 @@
 |.1.3.6.1.4.1.6574.4.3.6.1.0|Autonomie
 |===
 
-= OIDs calculé par le plugin
+==== OIDs calculé par le plugin
 
 [cols="2*", options="header"] 
 |===
