@@ -21,4 +21,5 @@ include_file('core', 'monitoring', 'class', 'monitoring');
 include_file('core', 'monitoring_snmp', 'class', 'monitoring');
 include_file('core', 'monitoring_cli', 'class', 'monitoring');
 include_file('core', 'monitoring_ping', 'class', 'monitoring');
+include_file('core', 'monitoring_url', 'class', 'monitoring');
 ?>

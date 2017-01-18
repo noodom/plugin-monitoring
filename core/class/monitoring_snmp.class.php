@@ -57,13 +57,13 @@ class monitoring_snmp {
 	/*     * *********************Methode d'instance************************* */
 
 	public function update() {
-		foreach ($this->getEqLogic()->getCmd('info', 'usercmd', null, true) as $cmd) {
+		foreach ($this->getEqLogic()->getCmd('info') as $cmd) {
 			if ($cmd->getConfiguration('motor') != 'snmp') {
 				continue;
 			}
 			try {
 				$key = explode('::', $cmd->getConfiguration('usercmd'));
-				$function = '' . $key[0];
+				$function = $key[0];
 				if (method_exists($this, $function)) {
 					$arguments = array();
 					if (count($key) > 1) {

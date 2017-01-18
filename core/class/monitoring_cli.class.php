@@ -40,7 +40,7 @@ class monitoring_cli {
 			}
 			try {
 				$key = explode('::', $cmd->getConfiguration('usercmd'));
-				$function = '' . $key[0];
+				$function = $key[0];
 				if (method_exists($this, $function)) {
 					$arguments = array();
 					if (count($key) > 1) {

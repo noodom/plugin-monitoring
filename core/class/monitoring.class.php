@@ -27,6 +27,7 @@ class monitoring extends eqLogic {
 		'cli' => array('name' => 'Bash'),
 		'snmp' => array('name' => 'SNMP'),
 		'ping' => array('name' => 'Ping'),
+		'url' => array('name' => 'URL'),
 	);
 
 	/*     * ***********************Methode static*************************** */
