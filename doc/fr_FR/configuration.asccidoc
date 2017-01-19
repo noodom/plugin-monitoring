@@ -1,0 +1,36 @@
+=== SNMP
+
+include::oids.asciidoc[]
+
+=== Ping
+
+Pour le ping il y a 2 commandes possible : 
+
+[cols="2*", options="header"] 
+|===
+|Commande|Données
+|ping|Resultat du ping
+|latency|test de latence
+|===
+
+=== CLI
+
+[cols="2*", options="header"] 
+|===
+|Commande|Données
+|cpufreq|Fréquence CPU
+|cputemp|Température CPU
+|memuse|% de mémoire utilisé
+|swap|% de swap utilisé
+|loadavg15|Charge sur 15min
+|uptime|Uptime de la machine
+|hdduse::#mount#|% d'utilisation du point de montage #mount#
+|===
+
+=== URL
+
+[cols="2*", options="header"] 
+|===
+|Commande|Données
+|access::#protocol#::#url#::#username#::#password#|Test l'accès à une URL avec #url# : url à tester (ex http://www.google.fr), #username# : nom d'utilisateur (si nécessaire), #password# : mot de passe de l'utilisateur (peut etre vide)
+|===
