@@ -69,7 +69,12 @@ class monitoring_url {
 		try {
 			$request_http->exec();
 		} catch (Exception $e) {
-			return 0;
+			slee(1);
+			try {
+				$request_http->exec();
+			} catch (Exception $e) {
+				return 0;
+			}
 		}
 		return 1;
 	}
