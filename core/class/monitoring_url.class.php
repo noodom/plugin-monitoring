@@ -58,12 +58,11 @@ class monitoring_url {
 		}
 	}
 
-	public function access($_protocole, $_ip, $_port = 80, $_url = '', $_username = null, $_password = null) {
-		$request = trim($_protocole . '://' . $_ip . ':' . $_port . '/' . $_url, '/');
+	public function access($_url, $_username = null, $_password = null) {
 		if ($_username != null && $_password != null) {
-			$request_http = new com_http($request, $_username, $_password);
+			$request_http = new com_http($_url, $_username, $_password);
 		} else {
-			$request_http = new com_http($request);
+			$request_http = new com_http($_url);
 		}
 		$request_http->setAllowEmptyReponse(true);
 		$request_http->setNoSslCheck(true);
