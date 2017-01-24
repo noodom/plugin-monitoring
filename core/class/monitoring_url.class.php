@@ -49,7 +49,7 @@ class monitoring_url {
 					}
 					$value = call_user_func_array(array($this, $function), $arguments);
 				} else {
-					$value = $this->getValue($cmd->getConfiguration('usercmd'));
+					continue;
 				}
 				$this->getEqLogic()->checkAndUpdateCmd($cmd, $value);
 			} catch (Exception $e) {
