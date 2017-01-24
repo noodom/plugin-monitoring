@@ -32,10 +32,5 @@ Pour le ping il y a 2 commandes possible :
 [cols="2*", options="header"] 
 |===
 |Commande|Données
-<<<<<<< HEAD:doc/fr_FR/configuration.asccidoc
-|access::#protocol#::#url#::#username#::#password#|Test l'accès à une URL avec #url# : url à tester (ex http://www.google.fr), #username# : nom d'utilisateur (si nécessaire), #password# : mot de passe de l'utilisateur (peut etre vide)
+|access::#url#::#username#::#password#|Test l'accès à une URL avec #url# : url à tester (ex http://www.google.fr), #username# : nom d'utilisateur (si nécessaire), #password# : mot de passe de l'utilisateur (peut etre vide)
 |===
-=======
-|access::#protocol#::#ip#::#port#::#url#::#username#::#password#|Test l'accès à une URL avec #protocol# : http, https...,#ip# : ip ou dns, #port# : 80,443..., #url# : complement d'url /toto/mon/site (peut etre vide), #username# : nom d'utilisateur (si nécessaire), #password# : mot de passe de l'utilisateur (peut etre vide)
-|===
->>>>>>> origin/master:doc/fr_FR/configuration.asciidoc
