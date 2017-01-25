@@ -60,14 +60,14 @@ class monitoring_cli {
 
 	public function cpufreq() {
 		if ($this->execCmd('ls /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq 2>/dev/null | wc -l') == 1) {
-			return $this->execCmd('sudo cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq') / 1000;
+			return $this->execCmd(system::getCmdSudo() . 'cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq') / 1000;
 		}
 		return 0;
 	}
 
 	public function cputemp() {
 		if ($this->execCmd('ls /sys/devices/virtual/thermal/thermal_zone0/temp 2>/dev/null | wc -l') == 1) {
-			return $this->execCmd('sudo cat /sys/devices/virtual/thermal/thermal_zone0/temp') / 1000;
+			return $this->execCmd(system::getCmdSudo() . 'cat /sys/devices/virtual/thermal/thermal_zone0/temp') / 1000;
 		}
 		return 0;
 	}
@@ -106,7 +106,7 @@ class monitoring_cli {
 	}
 
 	public function hdduse($_mount = '/') {
-		$space = $this->execCmd('sudo df -h ' . $_mount . ' | tail -n 1');
+		$space = $this->execCmd(system::getCmdSudo() . 'df -h ' . $_mount . ' | tail -n 1');
 		$pattern = '/([1-9]*?)\%/';
 		preg_match($pattern, $space, $matches);
 		return $matches[1];
@@ -142,7 +142,7 @@ class monitoring_cli {
 			return shell_exec($_cmd);
 		}
 		if ($this->getEqLogic()->getConfiguration('cli::mode') == 'ssh') {
-			$_cmd = str_replace('sudo ', '', $_cmd);
+			$_cmd = str_replace(system::getCmdSudo(), '', $_cmd);
 			$connection = ssh2_connect($this->getEqLogic()->getConfiguration('ssh::ip'), $this->getEqLogic()->getConfiguration('ssh::port', 22));
 			if ($connection === false) {
 				throw new Exception(__('Impossible de se connecter sur :', __FILE__) . ' ' . $this->getEqLogic()->getConfiguration('ssh::ip') . ':' . $this->getEqLogic()->getConfiguration('ssh::port', 22));

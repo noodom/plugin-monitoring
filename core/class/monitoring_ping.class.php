@@ -63,7 +63,7 @@ class monitoring_ping {
 
 	public function exec() {
 		$latency = false;
-		$exec_string = 'sudo ping -n -c 2 -t 255 ' . escapeshellcmd($this->getEqLogic()->getConfiguration('ping::ip'));
+		$exec_string = 'ping -n -c 2 -t 255 ' . escapeshellcmd($this->getEqLogic()->getConfiguration('ping::ip'));
 		exec($exec_string, $output, $return);
 		$output = array_values(array_filter($output));
 		if (!empty($output[1])) {
