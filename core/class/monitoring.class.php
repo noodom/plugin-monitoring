@@ -35,7 +35,7 @@ class monitoring extends eqLogic {
 	public static function dependancy_info() {
 		$return = array();
 		$return['progress_file'] = '/tmp/dependancy_monitoring_in_progress';
-		if (exec(system::getCmdSudo() . system::getType('cmd_check') . '-E "php5\-snmp" | wc -l') >= 1) {
+		if (exec(system::getCmdSudo() . system::get('cmd_check') . '-E "php5\-snmp" | wc -l') >= 1) {
 			$return['state'] = 'ok';
 		} else {
 			$return['state'] = 'nok';
