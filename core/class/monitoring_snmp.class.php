@@ -98,10 +98,14 @@ class monitoring_snmp {
 				}
 				break;
 			case 3:
-				$values = snmp3_walk($this->getEqLogic()->getConfiguration('snmp::ip'), $this->getEqLogic()->getConfiguration('snmp::username'), $this->getEqLogic()->getConfiguration('snmp::security'), $this->getEqLogic()->getConfiguration('snmp::authmode'), $this->getEqLogic()->getConfiguration('snmp::password'), $this->getEqLogic()->getConfiguration('snmp::privprotocole'), $this->getEqLogic()->getConfiguration('snmp::privpassphrase'), $_key);
-				if (!is_array($values)) {
-					usleep(200);
+				try {
 					$values = snmp3_walk($this->getEqLogic()->getConfiguration('snmp::ip'), $this->getEqLogic()->getConfiguration('snmp::username'), $this->getEqLogic()->getConfiguration('snmp::security'), $this->getEqLogic()->getConfiguration('snmp::authmode'), $this->getEqLogic()->getConfiguration('snmp::password'), $this->getEqLogic()->getConfiguration('snmp::privprotocole'), $this->getEqLogic()->getConfiguration('snmp::privpassphrase'), $_key);
+					if (!is_array($values)) {
+						usleep(200);
+						$values = snmp3_walk($this->getEqLogic()->getConfiguration('snmp::ip'), $this->getEqLogic()->getConfiguration('snmp::username'), $this->getEqLogic()->getConfiguration('snmp::security'), $this->getEqLogic()->getConfiguration('snmp::authmode'), $this->getEqLogic()->getConfiguration('snmp::password'), $this->getEqLogic()->getConfiguration('snmp::privprotocole'), $this->getEqLogic()->getConfiguration('snmp::privpassphrase'), $_key);
+					}
+				} catch (Exception $e) {
+					throw new Exception('Can not retrieve SNMP values');
 				}
 				break;
 		}
