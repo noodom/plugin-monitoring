@@ -47,7 +47,7 @@ class monitoring extends eqLogic {
 		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh', 'log' => log::getPathToLog(__CLASS__ . '_update'));
 	}
 
-	public static function cron($_eqLogic_id = null) {
+	public static function update($_eqLogic_id = null) {
 		if ($_eqLogic_id == null) {
 			$eqLogics = eqLogic::byType('monitoring');
 		} else {
