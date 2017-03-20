@@ -34,7 +34,7 @@ class monitoring extends eqLogic {
 
 	public static function dependancy_info() {
 		$return = array();
-		$return['progress_file'] = '/tmp/dependancy_monitoring_in_progress';
+		$return['progress_file'] = jeedom::getTmpFolder('monitoring') . '/dependance';
 		if (exec(system::getCmdSudo() . system::get('cmd_check') . '-E "php5\-snmp" | wc -l') >= 1) {
 			$return['state'] = 'ok';
 		} else {
@@ -44,7 +44,7 @@ class monitoring extends eqLogic {
 	}
 	public static function dependancy_install() {
 		log::remove(__CLASS__ . '_update');
-		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh', 'log' => log::getPathToLog(__CLASS__ . '_update'));
+		return array('script' => dirname(__FILE__) . '/../../resources/install_#stype#.sh ' . jeedom::getTmpFolder('monitoring') . '/dependance', 'log' => log::getPathToLog(__CLASS__ . '_update'));
 	}
 
 	public static function update($_eqLogic_id = null) {
