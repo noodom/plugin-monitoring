@@ -59,14 +59,21 @@ class monitoring extends eqLogic {
 				try {
 					$c = new Cron\CronExpression($autorefresh, new Cron\FieldFactory);
 					if ($c->isDue()) {
+						if ($monitoring->getCache('askToEqLogic', 0) > 3) {
+							log::add('monitoring', 'error', __('Trop d\'interrogation sans retour, désactivation des demandes : ', __FILE__) . $monitoring->getHumanName());
+							continue;
+						}
 						try {
+							$monitoring->setCache('askToEqLogic', $monitoring->getCache('askToEqLogic', 0) + 1);
 							$monitoring->updateSysInfo();
+							$monitoring->setCache('askToEqLogic', 0);
 						} catch (Exception $e) {
+							$monitoring->setCache('askToEqLogic', 0);
 							log::add('monitoring', 'error', $e->getMessage());
 						}
 					}
 				} catch (Exception $exc) {
-					log::add('monitoring', 'error', __('Expression cron non valide pour ', __FILE__) . $eqLogic->getHumanName() . ' : ' . $autorefresh);
+					log::add('monitoring', 'error', __('Expression cron non valide pour ', __FILE__) . $monitoring->getHumanName() . ' : ' . $autorefresh);
 				}
 			}
 		}
@@ -94,6 +101,7 @@ class monitoring extends eqLogic {
 		if ($this->getIsEnable()) {
 			$this->updateSysInfo();
 		}
+		$this->setCache('askToEqLogic', 0);
 	}
 
 	public function updateSysInfo() {
