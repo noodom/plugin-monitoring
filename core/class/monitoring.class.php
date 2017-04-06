@@ -61,6 +61,7 @@ class monitoring extends eqLogic {
 					if ($c->isDue()) {
 						if ($monitoring->getCache('askToEqLogic', 0) > 3) {
 							log::add('monitoring', 'error', __('Trop d\'interrogation sans retour, désactivation des demandes : ', __FILE__) . $monitoring->getHumanName());
+							$monitoring->setStatus('timeout', 1);
 							continue;
 						}
 						try {
