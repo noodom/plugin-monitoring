@@ -101,6 +101,7 @@ class monitoring_snmp {
 			throw new Exception('Can not retrieve SNMP values : ' . print_r($values, true));
 		}
 		$this->getEqLogic()->setCache('askToEqLogic', 0);
+		$this->getEqLogic()->setStatus('timeout', 0);
 		if ($_raw) {
 			return $values;
 		}

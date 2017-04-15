@@ -149,7 +149,8 @@ class monitoringCmd extends cmd {
 	public function execute($_options = null) {
 		$eqLogic = $this->getEqLogic();
 		if ($this->getLogicalId() == 'refresh') {
-			$this->getEqLogic()->updateSysInfo();
+			$eqLogic->setCache('askToEqLogic', 0);
+			$eqLogic->updateSysInfo();
 		} else if ($this->type == 'action') {
 			$eqLogic->cli_execCmd($this->getConfiguration('usercmd'));
 		}
