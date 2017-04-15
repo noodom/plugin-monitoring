@@ -82,32 +82,25 @@ class monitoring_snmp {
 	}
 
 	public function getValue($_key, $_raw = false) {
+		if ($this->getEqLogic()->getCache('askToEqLogic', 0) > 3) {
+			throw new Exception('Too many failed ask');
+		}
+		$this->getEqLogic()->setCache('askToEqLogic', $this->getEqLogic()->getCache('askToEqLogic', 0) + 1);
 		switch ($this->getEqLogic()->getConfiguration('snmp::protocole')) {
 			case 1:
 				$values = snmpwalk($this->getEqLogic()->getConfiguration('snmp::ip'), $this->getEqLogic()->getConfiguration('snmp::community'), $_key);
-				if (!is_array($values)) {
-					usleep(200);
-					$values = snmpwalk($this->getEqLogic()->getConfiguration('snmp::ip'), $this->getEqLogic()->getConfiguration('snmp::community'), $_key);
-				}
 				break;
 			case 2:
 				$values = snmp2_walk($this->getEqLogic()->getConfiguration('snmp::ip'), $this->getEqLogic()->getConfiguration('snmp::community'), $_key);
-				if (!is_array($values)) {
-					usleep(200);
-					$values = snmp2_walk($this->getEqLogic()->getConfiguration('snmp::ip'), $this->getEqLogic()->getConfiguration('snmp::community'), $_key);
-				}
 				break;
 			case 3:
-				try {
-					$values = snmp3_walk($this->getEqLogic()->getConfiguration('snmp::ip'), $this->getEqLogic()->getConfiguration('snmp::username'), $this->getEqLogic()->getConfiguration('snmp::security'), $this->getEqLogic()->getConfiguration('snmp::authmode'), $this->getEqLogic()->getConfiguration('snmp::password'), $this->getEqLogic()->getConfiguration('snmp::privprotocole'), $this->getEqLogic()->getConfiguration('snmp::privpassphrase'), $_key);
-				} catch (Exception $e) {
-					throw new Exception('Can not retrieve SNMP values');
-				}
+				$values = snmp3_walk($this->getEqLogic()->getConfiguration('snmp::ip'), $this->getEqLogic()->getConfiguration('snmp::username'), $this->getEqLogic()->getConfiguration('snmp::security'), $this->getEqLogic()->getConfiguration('snmp::authmode'), $this->getEqLogic()->getConfiguration('snmp::password'), $this->getEqLogic()->getConfiguration('snmp::privprotocole'), $this->getEqLogic()->getConfiguration('snmp::privpassphrase'), $_key);
 				break;
 		}
 		if (!is_array($values)) {
 			throw new Exception('Can not retrieve SNMP values : ' . print_r($values, true));
 		}
+		$this->getEqLogic()->setCache('askToEqLogic', 0);
 		if ($_raw) {
 			return $values;
 		}
