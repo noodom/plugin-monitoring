@@ -10,6 +10,8 @@ echo "********************************************************"
 apt-get update
 echo 50 > ${PROGRESS_FILE}
 apt-get install --yes --force-yes php5-snmp
+echo 75 > ${PROGRESS_FILE}
+service apache2 restart
 echo 100 > ${PROGRESS_FILE}
 echo "********************************************************"
 echo "*             Installation terminée                    *"
