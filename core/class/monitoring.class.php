@@ -65,11 +65,13 @@ class monitoring extends eqLogic {
 							continue;
 						}
 						try {
-							$monitoring->setCache('askToEqLogic', $monitoring->getCache('askToEqLogic', 0) + 1);
+							$prevAskToEqLogic = $monitoring->getCache('askToEqLogic', 0);
+							$monitoring->setCache('askToEqLogic', $prevAskToEqLogic + 1);
 							$monitoring->updateSysInfo();
-							$monitoring->setCache('askToEqLogic', 0);
+							if ($monitoring->getCache('askToEqLogic', 0) == ($prevAskToEqLogic + 1)) {
+								$monitoring->setCache('askToEqLogic', 0);
+							}
 						} catch (Exception $e) {
-							$monitoring->setCache('askToEqLogic', 0);
 							log::add('monitoring', 'error', $e->getMessage());
 						}
 					}
