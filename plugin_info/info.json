@@ -7,6 +7,5 @@
 	"require" : "2.4",
 	"category" : "monitoring",
 	"hasDependency" : true,
-	"issue" : "https://github.com/zoic21/plugin-monitoring/issues",
-	"include" : {"type" : "php" , "file" : "monitoring.inc" }
+	"issue" : "https://github.com/zoic21/plugin-monitoring/issues"
 }
