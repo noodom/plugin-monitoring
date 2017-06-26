@@ -39,7 +39,7 @@ class monitoring extends eqLogic {
 	public static function dependancy_info() {
 		$return = array();
 		$return['progress_file'] = jeedom::getTmpFolder('monitoring') . '/dependance';
-		if (exec(system::getCmdSudo() . system::get('cmd_check') . '-E "php5\-snmp" | wc -l') >= 1) {
+		if (exec(system::getCmdSudo() . system::get('cmd_check') . '-E "php5\-snmp|php\-snmp" | wc -l') >= 1) {
 			$return['state'] = 'ok';
 		} else {
 			$return['state'] = 'nok';
