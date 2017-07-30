@@ -158,7 +158,9 @@ class monitoringCmd extends cmd {
 			$eqLogic->setCache('askToEqLogic', 0);
 			$eqLogic->updateSysInfo();
 		} else if ($this->type == 'action') {
-			$eqLogic->cli_execCmd($this->getConfiguration('usercmd'));
+			$class = 'monitoring_cli';
+		        $monitor = new $class($eqLogic);
+			$monitor->execCmd($this->getConfiguration('usercmd'));
 		}
 		return true;
 	}
