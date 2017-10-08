@@ -1,6 +1,6 @@
 = Monitoring
 
-Plugin permet de monitorer des systèmes, il possede plusieurs moteur CLI (bash), SNMP, ping et URL
+Plugin permet de monitorer des systèmes, il possède plusieurs moteurs CLI (bash), SNMP, ping et URL
 
 
 == Configuration
